@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://kssy40ydmg0s"]
+[gd_scene load_steps=6 format=3 uid="uid://kssy40ydmg0s"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_dkl6n"]
+[ext_resource type="Script" path="res://player/smooth_camera.gd" id="2_tacaw"]
+[ext_resource type="Script" path="res://player/crosser.gd" id="3_40ph6"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rlnio"]
 
@@ -15,5 +17,21 @@ mesh = SubResource("CapsuleMesh_rlnio")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_bkw0l")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="CameraPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+
+[node name="SmoothCamera" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+top_level = true
+script = ExtResource("2_tacaw")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Crosser" type="Control" parent="CenterContainer"]
+layout_mode = 2
+script = ExtResource("3_40ph6")
