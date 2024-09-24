@@ -2,13 +2,13 @@ extends CharacterBody3D
 
 @export var fall_multiplier: float = 2.0
 @export var jump_height: float = 2.0
+@export var mouse_sens: = 0.01
 @onready var camera_pivot: Node3D = $CameraPivot
 
 const SPEED: = 5.0
 #const JUMP_VELOCITY: = 4.5
 
 var mouse_motion: = Vector2.ZERO
-var mouse_sens: = 0.001
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
