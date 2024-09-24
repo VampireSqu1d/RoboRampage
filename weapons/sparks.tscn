@@ -1,0 +1,90 @@
+[gd_scene load_steps=9 format=3 uid="uid://bmlkxky5u4voq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8xgym"]
+emission_enabled = true
+emission = Color(1, 1, 0.301961, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="Curve" id="Curve_2wcjd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ntpom"]
+curve = SubResource("Curve_2wcjd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l4rsm"]
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 5.0
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_ntpom")
+
+[sub_resource type="BoxMesh" id="BoxMesh_7m2bu"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="Animation" id="Animation_1ld48"]
+resource_name = "spark"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.466667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_y5kan"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s61pf"]
+_data = {
+"RESET": SubResource("Animation_y5kan"),
+"spark": SubResource("Animation_1ld48")
+}
+
+[node name="Sparks" type="GPUParticles3D"]
+top_level = true
+material_override = SubResource("StandardMaterial3D_8xgym")
+cast_shadow = 0
+emitting = false
+lifetime = 0.5
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_l4rsm")
+draw_pass_1 = SubResource("BoxMesh_7m2bu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_s61pf")
+}
+autoplay = "spark"

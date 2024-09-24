@@ -3,9 +3,19 @@ extends CharacterBody3D
 @export var fall_multiplier: float = 2.0
 @export var jump_height: float = 2.0
 @export var mouse_sens: = 0.01
+@export var max_hitpoints: = 100
+
+
 @onready var camera_pivot: Node3D = $CameraPivot
 
 const SPEED: = 5.0
+var hitpoints: = max_hitpoints:
+	set(value):
+		hitpoints = value
+		print(hitpoints)
+		if hitpoints <= 0:
+			
+			get_tree().reload_current_scene()
 #const JUMP_VELOCITY: = 4.5
 
 var mouse_motion: = Vector2.ZERO
@@ -21,11 +31,11 @@ func _physics_process(delta: float) -> void:
 			velocity += get_gravity() * delta
 		else:
 			velocity += get_gravity() * delta * fall_multiplier
-
+	
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = sqrt(jump_height * 2.0 * -get_gravity().y)
-
+	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
@@ -36,7 +46,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-
+	
 	move_and_slide()
 
 
