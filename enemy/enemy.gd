@@ -7,10 +7,11 @@ class_name Enemy
 
 @export var max_hitpoints: = 100
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animation_tree: AnimationTree = $AnimationTree
+@onready var playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
 
 const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+
 
 var player
 var provoked: bool = false
@@ -23,6 +24,8 @@ var hitpoints: = max_hitpoints:
 		provoked = true
 
 func _ready() -> void:
+	
+	playback.travel("Idle")
 	player = get_tree().get_first_node_in_group("player")
 
 
@@ -45,7 +48,7 @@ func _physics_process(delta: float) -> void:
 	
 	if provoked:
 		if squared_distance <= atack_range*atack_range:
-			animation_player.play("attack")
+			playback.travel("attack")
 	
 	if direction:
 		look_at_target(direction)

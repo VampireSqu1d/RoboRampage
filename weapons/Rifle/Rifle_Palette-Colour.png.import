@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btgab01esvpvi"
-path.s3tc="res://.godot/imported/SMG_Palette-Colour.png-256a417f94ef4953585d937e0644df4b.s3tc.ctex"
+uid="uid://bxwiu2cdoapd8"
+path.s3tc="res://.godot/imported/Rifle_Palette-Colour.png-911f694e80ead9cb175f9effcc814bf2.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://weapons/SMG_Palette-Colour.png"
-dest_files=["res://.godot/imported/SMG_Palette-Colour.png-256a417f94ef4953585d937e0644df4b.s3tc.ctex"]
+source_file="res://weapons/Rifle/Rifle_Palette-Colour.png"
+dest_files=["res://.godot/imported/Rifle_Palette-Colour.png-911f694e80ead9cb175f9effcc814bf2.s3tc.ctex"]
 
 [params]
 

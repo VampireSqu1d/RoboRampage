@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://blqjqgqymk0il"]
+[gd_scene load_steps=11 format=3 uid="uid://blqjqgqymk0il"]
 
 [ext_resource type="Material" uid="uid://crj16t30k0etd" path="res://levels/Materials/grey.tres" id="1_h6c2h"]
 [ext_resource type="PackedScene" uid="uid://kssy40ydmg0s" path="res://player/player.tscn" id="1_iyc0m"]
 [ext_resource type="Material" uid="uid://jgf7a2fr5w04" path="res://levels/Materials/blue.tres" id="2_rq4oe"]
 [ext_resource type="PackedScene" uid="uid://du07ip63y1s4a" path="res://enemy/enemy.tscn" id="4_b1omt"]
+[ext_resource type="PackedScene" uid="uid://d38x375dyiesb" path="res://Pickups/small_butllet_pickup.tscn" id="5_nr6d1"]
+[ext_resource type="PackedScene" uid="uid://bogy2ov80u8ga" path="res://Pickups/bullet_pickup.tscn" id="6_5tfwc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_i7afe"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -295,4 +297,18 @@ use_collision = true
 size = Vector3(64, 1, 64)
 
 [node name="Enemy" parent="." instance=ExtResource("4_b1omt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1, 19)
+attack_damage = 20
+
+[node name="Pickups" type="Node3D" parent="."]
+
+[node name="SmallButlletPickup" parent="Pickups" instance=ExtResource("5_nr6d1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.714, 5.50111, 0)
+
+[node name="SmallButlletPickup2" parent="Pickups" instance=ExtResource("5_nr6d1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.714, 4.00111, -19)
+
+[node name="BulletPickup" parent="." instance=ExtResource("6_5tfwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.56341, 1.53701, 0)
+
+[node name="BulletPickup2" parent="." instance=ExtResource("6_5tfwc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.43659, 1.53701, 23)
