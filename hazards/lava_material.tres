@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b6t8t5rnri37n"]
+
+[ext_resource type="Shader" uid="uid://dq3pvvluo6jxu" path="res://hazards/lava.tres" id="1_x3sfa"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_x3sfa")
